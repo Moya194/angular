@@ -1,0 +1,14 @@
+.form-group {
+  margin-bottom: 15px;
+}
+
+.validation-error {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

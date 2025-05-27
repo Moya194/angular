@@ -1,0 +1,27 @@
+<div class="home-container">
+  <header class="header">
+    <h1>Bienvenido a la aplicación</h1>
+    <button (click)="logout()" class="logout-button">Cerrar sesión</button>
+  </header>
+
+  <main>
+    <!-- Cargando -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Cargando información del usuario...</p>
+    </div>
+
+    <!-- Usuario cargado -->
+    <div *ngIf="!loading && user" class="user-info">
+      <h2>Información del usuario</h2>
+      <div class="user-details">
+        <img [src]="user.avatar" alt="Avatar del usuario" class="user-avatar" />
+        <div class="user-text">
+          <p><strong>ID:</strong> {{ user.id }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Nombre:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

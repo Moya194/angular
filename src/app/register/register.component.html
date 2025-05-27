@@ -1,0 +1,43 @@
+<div class="register">
+  <form class="custom-form" [formGroup]="registerForm" (ngSubmit)="register()">
+    <h1>Registro</h1>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div class="form-group">
+      <input type="email" formControlName="email" placeholder="Correo electrónico" autocomplete="email" />
+      <div *ngIf="f['email'].touched && f['email'].errors" class="validation-error">
+        <div *ngIf="f['email'].errors['required']">El correo es obligatorio</div>
+        <div *ngIf="f['email'].errors['email']">Correo inválido</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" formControlName="password" placeholder="Contraseña" autocomplete="new-password" />
+      <div *ngIf="f['password'].touched && f['password'].errors" class="validation-error">
+        <div *ngIf="f['password'].errors['required']">La contraseña es obligatoria</div>
+        <div *ngIf="f['password'].errors['minlength']">Mínimo 6 caracteres</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" formControlName="confirmPassword" placeholder="Confirmar contraseña" autocomplete="new-password" />
+      <div *ngIf="f['confirmPassword'].touched && f['confirmPassword'].errors" class="validation-error">
+        <div *ngIf="f['confirmPassword'].errors['required']">Confirma tu contraseña</div>
+      </div>
+      <div *ngIf="registerForm.hasError('passwordsMismatch') && f['confirmPassword'].touched" class="validation-error">
+        Las contraseñas no coinciden
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting || registerForm.invalid">
+      {{ isSubmitting ? 'Registrando...' : 'Registrarse' }}
+    </button>
+
+    <p class="login-link">
+      ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
+    </p>
+  </form>
+</div>

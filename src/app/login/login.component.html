@@ -1,0 +1,48 @@
+<div class="login">
+  <form class="custom-form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <h1>Iniciar sesión</h1>
+
+    <!-- Mensaje de error general -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Correo electrónico"
+        autocomplete="email"
+      />
+      <div *ngIf="f['email'].touched && f['email'].errors" class="validation-error">
+        <div *ngIf="f['email'].errors['required']">El correo es requerido</div>
+        <div *ngIf="f['email'].errors['email']">Ingrese un correo válido</div>
+      </div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="form-group">
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Contraseña"
+        autocomplete="current-password"
+      />
+      <div *ngIf="f['password'].touched && f['password'].errors" class="validation-error">
+        <div *ngIf="f['password'].errors['required']">La contraseña es requerida</div>
+        <div *ngIf="f['password'].errors['minlength']">Debe tener al menos 6 caracteres</div>
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <button type="submit" [disabled]="isSubmitting || loginForm.invalid">
+      {{ isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión' }}
+    </button>
+
+    <p class="register-link">
+      ¿No tienes cuenta?
+      <a routerLink="/register">Regístrate</a>
+    </p>
+  </form>
+</div>
